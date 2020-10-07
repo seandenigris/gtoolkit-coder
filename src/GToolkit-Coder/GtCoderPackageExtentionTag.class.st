@@ -54,7 +54,7 @@ GtCoderPackageExtentionTag >> package: aRPackage [
 	self onPackageChange.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 GtCoderPackageExtentionTag >> packageName [
 	^ self package name
 ]
