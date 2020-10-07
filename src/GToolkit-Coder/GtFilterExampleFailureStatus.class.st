@@ -16,11 +16,6 @@ GtFilterExampleFailureStatus >> label [
 	^ 'Failure'
 ]
 
-{ #category : #'private - accessing' }
-GtFilterExampleFailureStatus >> numberOfExamplesFor: anExampler [
-	^ anExampler numberOfFailureExamples
-]
-
 { #category : #'api - accessing' }
 GtFilterExampleFailureStatus >> order [
 	^ 3

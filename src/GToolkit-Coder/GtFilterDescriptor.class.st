@@ -1,11 +1,3 @@
-"
-I describe how a ${class:GtSearchMethodsFilter}$ should look and behave in a UI.
-I am used to build ${class:GtFilterTagElement}$ instances inside of ${class:GtFiltersElement}$.
-For more details:
-- ${method:GtCodersElement>>#buildFilter}$ is a code that inittialize ${class:GtFiltersElement}$ using instances of myself,
-- ${method:GtSearchMethodsFilter class>>#filterDescriptorFor:|show=#gtImplementorsFor:}$ displays a list of various definitions of myself.
-See ${class:GtFiltersElement}$ for an example.
-"
 Class {
 	#name : #GtFilterDescriptor,
 	#superclass : #Object,
@@ -15,8 +7,7 @@ Class {
 		'completion',
 		'emptyDefaultValue',
 		'creationBlock',
-		'valueIsRequired',
-		'isDefault'
+		'valueIsRequired'
 	],
 	#category : #'GToolkit-Coder-Filters - UI'
 }
@@ -51,12 +42,6 @@ GtFilterDescriptor class >> creator: aBlock named: aString order: anInteger comp
 		yourself
 ]
 
-{ #category : #'initialize-release' }
-GtFilterDescriptor >> beNotDefault [
-	"Do not display this particular descriptor filter as a default filter"
-	isDefault := false
-]
-
 { #category : #accessing }
 GtFilterDescriptor >> completion [
 	^ completion
@@ -82,23 +67,10 @@ GtFilterDescriptor >> emptyDefaultValue: aString [
 	emptyDefaultValue := aString
 ]
 
-{ #category : #'gt-extensions' }
-GtFilterDescriptor >> gtCompletionsFor: aView [
-	<gtView>
-	self completion ifNil: [ ^ aView empty ].
-	(self completion isKindOf: GtStringsCompletionStrategy)
-		ifFalse: [ ^ aView empty ].
-	^ aView forward
-		title: 'Completions';
-		object: [ self completion ];
-		view: #gtCompletionsFor:
-]
-
 { #category : #'initialize-release' }
 GtFilterDescriptor >> initialize [
 	super initialize.
-	valueIsRequired := true.
-	isDefault := true.
+	valueIsRequired := true
 ]
 
 { #category : #accessing }
@@ -126,20 +98,9 @@ GtFilterDescriptor >> order: anInteger [
 	order := anInteger
 ]
 
-{ #category : #printing }
-GtFilterDescriptor >> printOn: aStream [
-	self name ifNil: [ ^ super printOn: aStream ].
-	aStream 
-		nextPutAll: 'Filter Descriptor: ';
-		nextPutAll: self name asString;
-		nextPutAll: ' (order: ';
-		print: self order;
-		nextPutAll: ')'
-]
-
 { #category : #testing }
 GtFilterDescriptor >> showAsDefaultWhenEmpty [
-	^ isDefault and: [ emptyDefaultValue notNil ]
+	^ emptyDefaultValue notNil
 ]
 
 { #category : #testing }

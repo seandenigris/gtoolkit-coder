@@ -63,8 +63,8 @@ GtCoderGrowingClassesHierarchyTree >> subclassTrees [
 
 { #category : #updating }
 GtCoderGrowingClassesHierarchyTree >> updateSubclasses [
-	self rootClass instanceSide hasSubclasses ifFalse: [ ^ self ].
-	subclassTrees := self rootClass instanceSide subclasses 
+	self rootClass hasSubclasses ifFalse: [ ^ self ].
+	subclassTrees := self rootClass subclasses 
 		collect: [ :eachClass |
 			self class new rootClass: eachClass ]
 		as: Array.

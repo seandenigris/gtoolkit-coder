@@ -1,11 +1,3 @@
-"
-I am a ${class:BlElement}$.
-I build a filter in ${class:GtCoderElement}$, see ${method:GtCodersElement>>#buildFilter|label=#selector}$.
-!! Element Example
-The following example shows how I look like: ${example:GtFiltersElementExamples>>#filtersElement|codeExpanded=false|previewExpanded=true|previewShow=#gtLiveFor:|previewHeight=70}$
-!! Coder Example
-The following example shows a coder with default filters element that you can change: ${example:GtFiltersElementExamples>>#coderWithFiltersElement|codeExpanded=false|previewExpanded=true}$
-"
 Class {
 	#name : #GtFiltersElement,
 	#superclass : #BrHorizontalFlow,
@@ -41,7 +33,7 @@ GtFiltersElement >> addFilterForDescriptor: aFilterDescriptor andValue: aString 
 	self addChild: element at: self childrenCount
 ]
 
-{ #category : #'api - actions' }
+{ #category : #actions }
 GtFiltersElement >> applyFilters [
 	self fireEvent: (GtFiltersChangedEvent new filterElement: self).
 	self addEmptyDefault
@@ -59,10 +51,9 @@ GtFiltersElement >> clearFilters [
 	[ self childrenCount > 1 ] whileTrue: [ self removeChildAt: 1 ]
 ]
 
-{ #category : #'private - actions' }
+{ #category : #accessing }
 GtFiltersElement >> createNewTag [
 	| tag |
-	self descriptors isEmptyOrNil ifTrue: [ ^ self ].
 	(self childrenCount > 1
 		and: [ (self childAt: self childrenCount - 1) isDefaultAllFilter ])
 		ifTrue: [ self removeChildAt: self childrenCount - 1 ].
@@ -95,7 +86,7 @@ GtFiltersElement >> filtersDo: aBlock [
 					value: filterTagElement valueString ] ]
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 GtFiltersElement >> initialize [
 	super initialize.
 	self hMatchParent.
@@ -103,7 +94,7 @@ GtFiltersElement >> initialize [
 	self addChild: self newAddTagButton as: #newButton
 ]
 
-{ #category : #'private - instance creation' }
+{ #category : #accessing }
 GtFiltersElement >> newAddTagButton [
 	^ BrButton new
 		look:

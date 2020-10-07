@@ -131,31 +131,10 @@ GtClassMethodsCoder >> combinedFilter [
 			[ :filter | combined ifNil: [ filter ] ifNotNil: [ filter & combined ] ]
 ]
 
-{ #category : #accessing }
-GtClassMethodsCoder >> examplesFilter: aView [
-	<gtFilterTypes>
-	^ aView explicit
-		title: 'Examples';
-		priority: 40;
-		stencil: [ | states |
-			states := GtFilterExampleStatus default statuses.
-			GtCoderContextMenuContent new
-				items: (states collect: [ :eachState | 
-					GtCoderContextMenuAction new
-						action: [ :element | 
-							self setFilters: {
-								((GtSearchExamplesFilter new
-									resultState: eachState)
-									coder: self)} ];
-						title: (eachState labelWithAmountFor: self exampler) ]);
-				hMatchParent;
-				vMatchParent ]
-]
-
 { #category : #elements }
 GtClassMethodsCoder >> filterDropDown: anElement [
 	^ BlElement new
-		size: 430 @ 430;
+		size: 400 @ 400;
 		addChild:
 			(GtPhlowCompositeView new
 				views: self filterTypes;
